@@ -28,6 +28,7 @@
       gap: 1.5rem;
     }
     .card {
+      position: relative;
       background: #fff;
       border-radius: 8px;
       overflow: hidden;
@@ -40,6 +41,32 @@
     }
     .card img {
       width: 100%;
+      display: block;
+    }
+    /* SATILDI badge styles */
+    .sold-checkbox {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 20px;
+      height: 20px;
+      z-index: 3;
+    }
+    .sold-label {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      background: rgba(255, 0, 0, 0.8);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .sold-checkbox:checked ~ .sold-label {
       display: block;
     }
     .card-content {
@@ -77,6 +104,8 @@
     <div class="grid">
       <!-- ITEM CARD #1: Dyson Cyclone V10 Absolute -->
       <div class="card">
+        <input type="checkbox" id="sold-1" class="sold-checkbox">
+        <label for="sold-1" class="sold-label">SATILDI</label>
         <img
           src="https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/markets/turkey/fc/448883-01_hero_image.png?scl=1"
           alt="Dyson Cyclone V10™ Absolute (Nikel/Bakır)"
@@ -93,6 +122,8 @@
 
       <!-- ITEM CARD #2: BGR250 ADJUSTA Sandviç Grill Makinesi -->
       <div class="card">
+        <input type="checkbox" id="sold-2" class="sold-checkbox">
+        <label for="sold-2" class="sold-label">SATILDI</label>
         <img
           src="assets/images/grill.jpeg"
           alt="Sage BGR250 ADJUSTA Sandviç Grill Makinesi"
@@ -109,6 +140,8 @@
 
       <!-- ITEM CARD #3: KARACA COFFEE BARISTA Espresso Makinesi -->
       <div class="card">
+        <input type="checkbox" id="sold-3" class="sold-checkbox">
+        <label for="sold-3" class="sold-label">SATILDI</label>
         <img
           src="assets/images/espresso.jpeg"
           alt="KARACA COFFEE BARISTA Espresso Makinesi"
