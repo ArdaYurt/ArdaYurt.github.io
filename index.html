@@ -3,45 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <title>Arda'nın Yeni Ev İhtiyaçları</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: sans-serif; padding: 1rem; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
     }
     .card {
-      border: 1px solid #ddd;
+      background: #fff;
       border-radius: 8px;
-      padding: 0.5rem;
-      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     }
     .card img {
-      max-width: 100%;
-      border-radius: 4px;
+      width: 100%;
+      display: block;
     }
-    .card a {
+    .card-content {
+      padding: 1rem;
+      text-align: center;
+    }
+    .card-content h2 {
+      font-size: 1.25rem;
+      margin: 0.5rem 0;
+    }
+    .card-content p.price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      color: #e53935;
+    }
+    .card-content a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #0066cc;
+      color: #fff;
+      border-radius: 4px;
       text-decoration: none;
-      color: #0066cc;
+      transition: background-color 0.2s;
+    }
+    .card-content a:hover {
+      background-color: #004a99;
     }
   </style>
 </head>
 <body>
   <h1>Arda'nın Yeni Ev İhtiyaçları</h1>
-  <div class="grid">
-    <!-- ITEM CARD #1 -->
-    <div class="card">
-      <img src="assets/images/su-bardagi.jpg" alt="Pasabahce Su Bardağı">
-      <h2>Pasabahce 6’lı Su Bardağı</h2>
-      <p>₺120</p>
-      <p>
-        <a href="https://www.example.com/product/123" target="_blank">
-          Satın Al →
-        </a>
-      </p>
+  <div class="container">
+    <div class="grid">
+      <!-- ITEM CARD #1: Dyson Cyclone V10 Absolute -->
+      <div class="card">
+        <img
+          src="https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/markets/turkey/fc/448883-01_hero_image.png?scl=1"
+          alt="Dyson Cyclone V10™ Absolute (Nikel/Bakır)"
+        >
+        <div class="card-content">
+          <h2>Dyson Cyclone V10™ Absolute (Nikel/Bakır)</h2>
+          <p class="price">19.999 TL</p>
+          <a
+            href="https://www.dyson.com.tr/products/vacuum-cleaners/dyson-cyclone-v10-absolute-nikel-bakir"
+            target="_blank"
+          >Satın Al →</a>
+        </div>
+      </div>
+
+      <!-- ITEM CARD #2: BGR250 ADJUSTA Sandviç Grill Makinesi -->
+      <div class="card">
+        <img
+          src="assets/images/grill.jpeg"
+          alt="Sage BGR250 ADJUSTA Sandviç Grill Makinesi"
+        >
+        <div class="card-content">
+          <h2>Sage BGR250 ADJUSTA Sandviç Grill Makinesi</h2>
+          <p class="price">6.999 TL</p>
+          <a
+            href="https://www.amazon.com.tr/BGR250-ADJUSTA-SANDV%C4%B0%C3%87-GRILL-MAK%C4%B0NES%C4%B0/dp/B07BB9WS3J"
+            target="_blank"
+          >Satın Al →</a>
+        </div>
+      </div>
+
+      <!-- ITEM CARD #3: KARACA COFFEE BARISTA Espresso Makinesi -->
+      <div class="card">
+        <img
+          src="assets/images/espresso.jpeg"
+          alt="KARACA COFFEE BARISTA Espresso Makinesi"
+        >
+        <div class="card-content">
+          <h2>KARACA COFFEE BARISTA Espresso Makinesi</h2>
+          <p class="price">6.999 TL</p>
+          <a
+            href="https://www.amazon.com.tr/KARACA-COFFEE-BAR%C4%B0STA-ESPRESSO-MAK%C4%B0NES%C4%B0/dp/B0C3MVL142?s=kitchen"
+            target="_blank"
+          >Satın Al →</a>
+        </div>
+      </div>
+
+      <!-- Duplicate .card blocks for more items -->
     </div>
-    <!-- Duplicate .card blocks for more items -->
   </div>
 </body>
 </html>
