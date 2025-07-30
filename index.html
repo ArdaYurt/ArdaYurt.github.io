@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Arda'nın Yeni Ev İhtiyaçları</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    .card img {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+    .card a {
+      text-decoration: none;
+      color: #0066cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Arda'nın Yeni Ev İhtiyaçları</h1>
+  <div class="grid">
+    <!-- ITEM CARD #1 -->
+    <div class="card">
+      <img src="assets/images/su-bardagi.jpg" alt="Pasabahce Su Bardağı">
+      <h2>Pasabahce 6’lı Su Bardağı</h2>
+      <p>₺120</p>
+      <p>
+        <a href="https://www.example.com/product/123" target="_blank">
+          Satın Al →
+        </a>
+      </p>
+    </div>
+    <!-- Duplicate .card blocks for more items -->
+  </div>
+</body>
+</html>
