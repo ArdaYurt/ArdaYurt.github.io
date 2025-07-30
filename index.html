@@ -14,8 +14,14 @@
     }
     h1 {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
       font-size: 2rem;
+    }
+    .instruction {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #555;
     }
     .container {
       max-width: 1200px;
@@ -43,13 +49,13 @@
       width: 100%;
       display: block;
     }
-    /* SATILDI badge styles */
     .sold-checkbox {
       position: absolute;
       top: 10px;
       left: 10px;
       width: 20px;
       height: 20px;
+      opacity: 0.8;
       z-index: 3;
     }
     .sold-label {
@@ -63,8 +69,8 @@
       padding: 0.5rem 1rem;
       font-size: 1.5rem;
       font-weight: bold;
-      z-index: 2;
       pointer-events: none;
+      z-index: 2;
     }
     .sold-checkbox:checked ~ .sold-label {
       display: block;
@@ -100,6 +106,7 @@
 </head>
 <body>
   <h1>Arda'nın Yeni Ev İhtiyaçları</h1>
+  <p class="instruction">Eğer satın aldıysanız lütfen kutuya tıklayın.</p>
   <div class="container">
     <div class="grid">
       <!-- ITEM CARD #1: Dyson Cyclone V10 Absolute -->
@@ -113,10 +120,7 @@
         <div class="card-content">
           <h2>Dyson Cyclone V10™ Absolute (Nikel/Bakır)</h2>
           <p class="price">19.999 TL</p>
-          <a
-            href="https://www.dyson.com.tr/products/vacuum-cleaners/dyson-cyclone-v10-absolute-nikel-bakir"
-            target="_blank"
-          >Satın Al →</a>
+          <a href="https://www.dyson.com.tr/products/vacuum-cleaners/dyson-cyclone-v10-absolute-nikel-bakir" target="_blank">Satın Al →</a>
         </div>
       </div>
 
@@ -124,17 +128,11 @@
       <div class="card">
         <input type="checkbox" id="sold-2" class="sold-checkbox">
         <label for="sold-2" class="sold-label">SATILDI</label>
-        <img
-          src="assets/images/grill.jpeg"
-          alt="Sage BGR250 ADJUSTA Sandviç Grill Makinesi"
-        >
+        <img src="assets/images/grill.jpeg" alt="Sage BGR250 ADJUSTA Sandviç Grill Makinesi">
         <div class="card-content">
           <h2>Sage BGR250 ADJUSTA Sandviç Grill Makinesi</h2>
           <p class="price">6.999 TL</p>
-          <a
-            href="https://www.amazon.com.tr/BGR250-ADJUSTA-SANDV%C4%B0%C3%87-GRILL-MAK%C4%B0NES%C4%B0/dp/B07BB9WS3J"
-            target="_blank"
-          >Satın Al →</a>
+          <a href="https://www.amazon.com.tr/BGR250-ADJUSTA-SANDV%C4%B0%C3%87-GRILL-MAK%C4%B0NES%C4%B0/dp/B07BB9WS3J" target="_blank">Satın Al →</a>
         </div>
       </div>
 
@@ -142,22 +140,54 @@
       <div class="card">
         <input type="checkbox" id="sold-3" class="sold-checkbox">
         <label for="sold-3" class="sold-label">SATILDI</label>
-        <img
-          src="assets/images/espresso.jpeg"
-          alt="KARACA COFFEE BARISTA Espresso Makinesi"
-        >
+        <img src="assets/images/espresso.jpeg" alt="KARACA COFFEE BARISTA Espresso Makinesi">
         <div class="card-content">
           <h2>KARACA COFFEE BARISTA Espresso Makinesi</h2>
           <p class="price">6.999 TL</p>
-          <a
-            href="https://www.amazon.com.tr/KARACA-COFFEE-BAR%C4%B0STA-ESPRESSO-MAK%C4%B0NES%C4%B0/dp/B0C3MVL142?s=kitchen"
-            target="_blank"
-          >Satın Al →</a>
+          <a href="https://www.amazon.com.tr/KARACA-COFFEE-BAR%C4%B0STA-ESPRESSO-MAK%C4%B0NES%C4%B0/dp/B0C3MVL142?s=kitchen" target="_blank">Satın Al →</a>
         </div>
       </div>
 
       <!-- Duplicate .card blocks for more items -->
     </div>
   </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBGgbYqLbdyeiWoYjYLueVSDSGfJ5lxW-o",
+      authDomain: "arda-b1956.firebaseapp.com",
+      databaseURL: "https://arda-b1956.firebaseio.com",
+      projectId: "arda-b1956",
+      storageBucket: "arda-b1956.appspot.com",
+      messagingSenderId: "159577153831",
+      appId: "1:159577153831:web:57aee461e539e6a7594902",
+      measurementId: "G-WZ71FQ3RXJ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const soldRef = ref(db, 'sold');
+
+    // Listen for updates and toggle checkboxes
+    onValue(soldRef, snapshot => {
+      const data = snapshot.val() || {};
+      Object.keys(data).forEach(key => {
+        const cb = document.getElementById(`sold-${key}`);
+        if (cb) cb.checked = data[key];
+      });
+    });
+
+    // Update database on change
+    document.querySelectorAll('.sold-checkbox').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const key = cb.id.split('-')[1];
+        set(ref(db, `sold/${key}`), cb.checked);
+      });
+    });
+  </script>
 </body>
 </html>
